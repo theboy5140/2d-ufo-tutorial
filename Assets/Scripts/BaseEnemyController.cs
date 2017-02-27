@@ -4,19 +4,21 @@ using UnityEngine;
 class BaseEnemyController : MonoBehaviour 
 {
 
-    public float rotateSpeed = 1;
-    public float speed = 1;
-    public float direction = 1;
+    protected float rotateSpeed;
+    protected float speed;
+    protected float direction;
 
     protected void Start()
     {
-        direction = Mathf.Sign (Random.Range (-1, 1));
+        direction = Mathf.Sign (Random.Range (-1f, 1f));
     }
 
     protected void Rotate()
     {
-        Vector3 rotator = new Vector3 (0.0f, 0.0f, 360) * Time.deltaTime * rotateSpeed * direction;
+        rotateSpeed = Random.Range (0.1f, 0.5f);
+        Vector3 rotator = new Vector3 (0.0f, 0.0f, 360f) * Time.deltaTime * rotateSpeed * direction;
         transform.Rotate (rotator);    
+        Debug.Log ("Rotating");
     }
 
     protected void OnTriggerEnter2D(Collider2D other)

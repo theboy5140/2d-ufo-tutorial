@@ -9,18 +9,18 @@ public class PlayerController : MonoBehaviour
     public float speed = 2;
     public float rotateSpeed = 1;
 
-    public const int LEVEL_ONE_SCORE = 0;
-    public const int LEVEL_TWO_SCORE = 10;
-    public const int LEVEL_THREE_SCORE = 50;
+    public int LEVEL_ONE_SCORE = 0;
+    public int LEVEL_TWO_SCORE = 10;
+    public int LEVEL_THREE_SCORE = 50;
 
-    private Rigidbody2D rigidBody;
     private float direction;
-    private int score = 0;
-    private int level = 1;
+    private GameController gameController;
+    private Rigidbody2D rigidBody;
 
 	void Start () 
     {
         rigidBody = GetComponent<Rigidbody2D> ();
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         direction = Mathf.Sign (Random.Range (-1, 1));
     }
 	
@@ -32,11 +32,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         RotatePlayer ();
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log ("collidering");
     }
 
     void ControlInput()
