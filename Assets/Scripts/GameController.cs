@@ -10,13 +10,24 @@ public class GameController : MonoBehaviour
     public int MAX_LEVEL = 3;
 
     public Text scoreText;
+    public GameObject restartButton;
 
     private int totalScore = 0;
 
 
+    public void RestartGame()
+    {
+        Application.LoadLevel (Application.loadedLevel);
+        restartButton.SetActive (false);
+    }
+
     public void AddScore(int score)
     {
         totalScore += score;
+        if (14 == totalScore) 
+        {
+            restartButton.SetActive (true);
+        }
     }
 
     public void ShowScore()
