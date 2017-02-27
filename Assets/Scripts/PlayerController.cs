@@ -22,9 +22,12 @@ public class PlayerController : MonoBehaviour {
         float moveVertical = Input.GetAxis ("Vertical");
         Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
         rb.AddForce (movement * speed);
-        Vector2 origin = transform.position;
-        this.transform.position = origin + new Vector2(moveHorizontal, moveVertical);
-        Debug.Log ("horizontal is :" + moveHorizontal);
-        Debug.Log ("vertical is :" + moveVertical);
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+
+        if (other.gameObject.CompareTag ("PickUp")) {
+            other.gameObject.SetActive (false);
+        }
     }
 }
