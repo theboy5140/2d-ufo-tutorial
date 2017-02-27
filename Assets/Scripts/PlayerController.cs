@@ -2,60 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Extra.Tess;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour 
+{
 
-    public float speed = 10;
-    public float rotateSpeed = 2;
-    public Text countText;
-    public Text winText;
+    public float speed = 2;
+    public float rotateSpeed = 1;
 
-    private Rigidbody2D rb;
-    private int count = 0;
+    public const int LEVEL_ONE_SCORE = 0;
+    public const int LEVEL_TWO_SCORE = 10;
+    public const int LEVEL_THREE_SCORE = 50;
+
+    private Rigidbody2D rigidBody;
     private float direction;
+    private int score = 0;
+    private int level = 1;
 
-	// Use this for initialization
-	void Start () {
-		
-        winText.text = "";
-        rb = GetComponent<Rigidbody2D> ();
+	void Start () 
+    {
+        rigidBody = GetComponent<Rigidbody2D> ();
         direction = Mathf.Sign (Random.Range (-1, 1));
     }
 	
-	// Update is called once per frame
-	void Update () {
-	
-        float moveHorizontal = Input.GetAxis ("Horizontal");
-        float moveVertical = Input.GetAxis ("Vertical");
-        Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
-        rb.AddForce (movement * speed);
-        addRotation ();
-
+	void Update () 
+    {
+        ControlInput ();
     }
 
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
+        RotatePlayer ();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
         
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-
-        if (other.gameObject.CompareTag ("PickUp")) {
-            other.gameObject.SetActive (false);
-            count += 1;
-            SetCountText ();
-        }
+    void ControlInput()
+    {
+        float moveHorizontal = Input.GetAxis ("Horizontal");
+        float moveVertical = Input.GetAxis ("Vertical");
+        Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+        rigidBody.AddForce (movement * speed);
     }
 
-    void SetCountText(){
-        countText.text = "SCORE :　" + count.ToString();
-        if (count >= 12) {
-            winText.text = "YOU WIN!";
-        }
-    }
-
-    void addRotation(){
-
+    void RotatePlayer()
+    {
         Vector3 rotator = new Vector3 (0.0f, 0.0f, 360) * Time.deltaTime * rotateSpeed * direction;
         transform.Rotate (rotator);
     }
