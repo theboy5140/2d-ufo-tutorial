@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
 
     void ControlInput()
     {
-        float moveHorizontal = Input.GetAxis ("Horizontal");
-        float moveVertical = Input.GetAxis ("Vertical");
+        float moveHorizontal = Input.acceleration.x;
+        float moveVertical = Input.acceleration.y;
         Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
         rigidBody.AddForce (movement * speed);
     }
