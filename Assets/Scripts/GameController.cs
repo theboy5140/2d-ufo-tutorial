@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
 
     private void ShowStartMenu()
     {
-        Time.timeScale = 0.0f;
+        //Time.timeScale = 0.0f;
         startMenu.SetActive (true);
         scoreLabel.SetActive (false);
     }
