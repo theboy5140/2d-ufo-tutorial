@@ -2,7 +2,7 @@
 
 __What is 2d UFO Tutorial__
 
-This is my fiorst unity3d 3d game project for learning, I build this project followed by the unity3d office learning tutorial.
+This is my first unity3d 3d game project for learning, I build this project followed by the unity3d office learning tutorial.
 This is a very simple game help you understand the normal operation about unity3d engine. And this is my starter.
 
 __Development Platform__
