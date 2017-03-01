@@ -18,7 +18,6 @@ class BaseEnemyController : MonoBehaviour
         rotateSpeed = Random.Range (0.1f, 0.5f);
         Vector3 rotator = new Vector3 (0.0f, 0.0f, 360f) * Time.deltaTime * rotateSpeed * direction;
         transform.Rotate (rotator);    
-        Debug.Log ("Rotating");
     }
 
     protected void OnTriggerEnter2D(Collider2D other)

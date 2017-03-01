@@ -17,6 +17,5 @@ public class StartMenuController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         bearImage.transform.Rotate (new Vector3(0.0f, 0.0f, 360f) * Time.deltaTime * rotateSpeed);
-        Debug.Log ("rolling in bear");
 	}
 }
